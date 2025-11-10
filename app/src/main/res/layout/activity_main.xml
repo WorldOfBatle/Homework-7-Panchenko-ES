@@ -10,7 +10,8 @@
         android:id="@+id/displayText"
         android:layout_width="0dp"
         android:layout_height="@dimen/display_height"
-        android:background="@color/white"
+        android:background="@color/display_bg"
+        android:textColor="@color/display_text"
         android:gravity="end|center_vertical"
         android:padding="@dimen/display_padding"
         android:text="@string/disp_zero"
@@ -19,7 +20,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Контейнер клавиш (вертикальные ряды) -->
+    <!-- Контейнер клавиш -->
     <LinearLayout
         android:id="@+id/keysContainer"
         android:layout_width="0dp"
@@ -31,172 +32,57 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Ряд 7 8 9 × -->
+        <!-- 7 8 9 × -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:weightSum="4">
 
-            <Button
-                android:id="@+id/btn7"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/d7" />
-
-            <Button
-                android:id="@+id/btn8"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/d8" />
-
-            <Button
-                android:id="@+id/btn9"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/d9" />
-
-            <Button
-                android:id="@+id/btnMul"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/op_mul"
-                android:contentDescription="@string/cd_multiply" />
+            <Button android:id="@+id/btn7" style="@style/CalcButton" android:text="@string/d7"/>
+            <Button android:id="@+id/btn8" style="@style/CalcButton" android:text="@string/d8"/>
+            <Button android:id="@+id/btn9" style="@style/CalcButton" android:text="@string/d9"/>
+            <Button android:id="@+id/btnMul" style="@style/CalcButtonOp" android:text="@string/op_mul" android:contentDescription="@string/cd_multiply"/>
         </LinearLayout>
 
-        <!-- Ряд 4 5 6 ÷ -->
+        <!-- 4 5 6 ÷ -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:weightSum="4">
 
-            <Button
-                android:id="@+id/btn4"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/d4" />
-
-            <Button
-                android:id="@+id/btn5"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/d5" />
-
-            <Button
-                android:id="@+id/btn6"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/d6" />
-
-            <Button
-                android:id="@+id/btnDiv"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/op_div"
-                android:contentDescription="@string/cd_divide" />
+            <Button android:id="@+id/btn4" style="@style/CalcButton" android:text="@string/d4"/>
+            <Button android:id="@+id/btn5" style="@style/CalcButton" android:text="@string/d5"/>
+            <Button android:id="@+id/btn6" style="@style/CalcButton" android:text="@string/d6"/>
+            <Button android:id="@+id/btnDiv" style="@style/CalcButtonOp" android:text="@string/op_div" android:contentDescription="@string/cd_divide"/>
         </LinearLayout>
 
-        <!-- Ряд 1 2 3 − -->
+        <!-- 1 2 3 − -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:weightSum="4">
 
-            <Button
-                android:id="@+id/btn1"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/d1" />
-
-            <Button
-                android:id="@+id/btn2"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/d2" />
-
-            <Button
-                android:id="@+id/btn3"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/d3" />
-
-            <Button
-                android:id="@+id/btnMinus"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/op_minus"
-                android:contentDescription="@string/cd_minus" />
+            <Button android:id="@+id/btn1" style="@style/CalcButton" android:text="@string/d1"/>
+            <Button android:id="@+id/btn2" style="@style/CalcButton" android:text="@string/d2"/>
+            <Button android:id="@+id/btn3" style="@style/CalcButton" android:text="@string/d3"/>
+            <Button android:id="@+id/btnMinus" style="@style/CalcButtonOp" android:text="@string/op_minus" android:contentDescription="@string/cd_minus"/>
         </LinearLayout>
 
-        <!-- Ряд 0 C = + -->
+        <!-- 0 C = + -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:weightSum="4">
 
-            <Button
-                android:id="@+id/btn0"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/d0" />
-
-            <Button
-                android:id="@+id/btnClear"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/op_clear"
-                android:contentDescription="@string/cd_clear" />
-
-            <Button
-                android:id="@+id/btnEq"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/op_eq"
-                android:contentDescription="@string/cd_equals" />
-
-            <Button
-                android:id="@+id/btnPlus"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/op_plus"
-                android:contentDescription="@string/cd_plus" />
+            <Button android:id="@+id/btn0" style="@style/CalcButton" android:text="@string/d0"/>
+            <Button android:id="@+id/btnClear" style="@style/CalcButtonOp" android:text="@string/op_clear" android:contentDescription="@string/cd_clear"/>
+            <Button android:id="@+id/btnEq" style="@style/CalcButtonEq" android:text="@string/op_eq" android:contentDescription="@string/cd_equals"/>
+            <Button android:id="@+id/btnPlus" style="@style/CalcButtonOp" android:text="@string/op_plus" android:contentDescription="@string/cd_plus"/>
         </LinearLayout>
 
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

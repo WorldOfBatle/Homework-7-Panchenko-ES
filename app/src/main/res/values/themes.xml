@@ -1,6 +1,12 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Единая тема приложения на базе Material3 с DayNight -->
     <style name="Theme.Homework7PanchenkoES" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorPrimary">@android:color/holo_purple</item>
-        <item name="colorSecondary">@android:color/holo_blue_bright</item>
+        <!-- Базовые цвета -->
+        <item name="colorPrimary">@color/brand_primary</item>
+        <item name="colorSecondary">@color/brand_secondary</item>
+
+        <!-- Можно подсветить статус-бар основным цветом -->
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
     </style>
 </resources>

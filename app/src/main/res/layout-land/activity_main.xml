@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/screen_padding">
+
+    <TextView
+        android:id="@+id/displayText"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:minHeight="@dimen/display_height"
+        android:background="@color/display_bg"
+        android:textColor="@color/display_text"
+        android:gravity="end|center_vertical"
+        android:padding="@dimen/display_padding"
+        android:text="@string/disp_zero"
+        android:textSize="@dimen/display_text_size"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/pad"
+        app:layout_constraintHorizontal_weight="1"/>
+
+    <!-- Правый блок с кнопками: две вертикальные колонки -->
+    <LinearLayout
+        android:id="@+id/pad"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/displayText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="1">
+
+        <!-- Левая колонка (7 4 1 0) -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:weightSum="4">
+
+            <Button android:id="@+id/btn7" style="@style/CalcButton" android:text="@string/d7"/>
+            <Button android:id="@+id/btn4" style="@style/CalcButton" android:text="@string/d4"/>
+            <Button android:id="@+id/btn1" style="@style/CalcButton" android:text="@string/d1"/>
+            <Button android:id="@+id/btn0" style="@style/CalcButton" android:text="@string/d0"/>
+        </LinearLayout>
+
+        <!-- Правая колонка (8 5 2 C / 9 6 3 = + − × ÷) в виде вложенных рядов -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:weightSum="4">
+                <Button android:id="@+id/btn8" style="@style/CalcButton" android:text="@string/d8"/>
+                <Button android:id="@+id/btn5" style="@style/CalcButton" android:text="@string/d5"/>
+                <Button android:id="@+id/btn2" style="@style/CalcButton" android:text="@string/d2"/>
+                <Button android:id="@+id/btnClear" style="@style/CalcButtonOp" android:text="@string/op_clear" android:contentDescription="@string/cd_clear"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:weightSum="4">
+                <Button android:id="@+id/btn9" style="@style/CalcButton" android:text="@string/d9"/>
+                <Button android:id="@+id/btn6" style="@style/CalcButton" android:text="@string/d6"/>
+                <Button android:id="@+id/btn3" style="@style/CalcButton" android:text="@string/d3"/>
+                <Button android:id="@+id/btnEq" style="@style/CalcButtonEq" android:text="@string/op_eq" android:contentDescription="@string/cd_equals"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:weightSum="4">
+                <Button android:id="@+id/btnPlus" style="@style/CalcButtonOp" android:text="@string/op_plus" android:contentDescription="@string/cd_plus"/>
+                <Button android:id="@+id/btnMinus" style="@style/CalcButtonOp" android:text="@string/op_minus" android:contentDescription="@string/cd_minus"/>
+                <Button android:id="@+id/btnMul" style="@style/CalcButtonOp" android:text="@string/op_mul" android:contentDescription="@string/cd_multiply"/>
+                <Button android:id="@+id/btnDiv" style="@style/CalcButtonOp" android:text="@string/op_div" android:contentDescription="@string/cd_divide"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

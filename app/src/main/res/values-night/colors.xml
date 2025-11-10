@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Ночные оттенки под Material3 -->
+    <color name="brand_primary_night">#D0BCFF</color>
+    <color name="brand_secondary_night">#66FFF5</color>
+
+    <!-- Экран в тёмной теме -->
+    <color name="display_bg">#121212</color>
+    <color name="display_text">#FFFFFFFF</color>
+</resources>

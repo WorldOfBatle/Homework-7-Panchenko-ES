@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Базовый стиль цифры -->
-    <style name="CalcButton" parent="android:Widget.Button">
+    <!-- Базовый стиль кнопки калькулятора -->
+    <style name="CalcButton" parent="Widget.Material3.Button.OutlinedButton">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">1</item>
@@ -9,12 +10,10 @@
         <item name="android:layout_margin">6dp</item>
     </style>
 
-    <!-- Операции -->
     <style name="CalcButtonOp" parent="CalcButton">
         <item name="android:textStyle">bold</item>
     </style>
 
-    <!-- Равно — можно визуально выделить размером шрифта -->
     <style name="CalcButtonEq" parent="CalcButtonOp">
         <item name="android:textSize">22sp</item>
     </style>
