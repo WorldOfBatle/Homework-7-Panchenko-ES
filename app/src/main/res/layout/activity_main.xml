@@ -1,25 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  ДЗ: Создать макет "Калькулятор".
-  Требования: цифры 0–9 и операции: Плюс, Минус, Умножить, Разделить, Равно, Очистить.
-  Макет: ConstraintLayout + вложенные LinearLayout с весами для равных кнопок.
--->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="@dimen/screen_padding">
 
     <!-- Экран -->
     <TextView
         android:id="@+id/displayText"
         android:layout_width="0dp"
-        android:layout_height="72dp"
-        android:background="#FFFFFFFF"
+        android:layout_height="@dimen/display_height"
+        android:background="@color/white"
         android:gravity="end|center_vertical"
-        android:padding="16dp"
-        android:text="0"
-        android:textSize="28sp"
+        android:padding="@dimen/display_padding"
+        android:text="@string/disp_zero"
+        android:textSize="@dimen/display_text_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -30,7 +25,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
-        android:paddingTop="12dp"
+        android:paddingTop="@dimen/keys_top_padding"
         app:layout_constraintTop_toBottomOf="@id/displayText"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,30 +37,39 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:weightSum="4">
+
             <Button
                 android:id="@+id/btn7"
+                style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="7"/>
+                android:text="@string/d7" />
+
             <Button
                 android:id="@+id/btn8"
+                style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="8"/>
+                android:text="@string/d8" />
+
             <Button
                 android:id="@+id/btn9"
+                style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="9"/>
+                android:text="@string/d9" />
+
             <Button
                 android:id="@+id/btnMul"
+                style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="×"/>
+                android:text="@string/op_mul"
+                android:contentDescription="@string/cd_multiply" />
         </LinearLayout>
 
         <!-- Ряд 4 5 6 ÷ -->
@@ -74,30 +78,39 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:weightSum="4">
+
             <Button
                 android:id="@+id/btn4"
+                style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="4"/>
+                android:text="@string/d4" />
+
             <Button
                 android:id="@+id/btn5"
+                style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="5"/>
+                android:text="@string/d5" />
+
             <Button
                 android:id="@+id/btn6"
+                style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="6"/>
+                android:text="@string/d6" />
+
             <Button
                 android:id="@+id/btnDiv"
+                style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="÷"/>
+                android:text="@string/op_div"
+                android:contentDescription="@string/cd_divide" />
         </LinearLayout>
 
         <!-- Ряд 1 2 3 − -->
@@ -106,30 +119,39 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:weightSum="4">
+
             <Button
                 android:id="@+id/btn1"
+                style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="1"/>
+                android:text="@string/d1" />
+
             <Button
                 android:id="@+id/btn2"
+                style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="2"/>
+                android:text="@string/d2" />
+
             <Button
                 android:id="@+id/btn3"
+                style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="3"/>
+                android:text="@string/d3" />
+
             <Button
                 android:id="@+id/btnMinus"
+                style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="−"/>
+                android:text="@string/op_minus"
+                android:contentDescription="@string/cd_minus" />
         </LinearLayout>
 
         <!-- Ряд 0 C = + -->
@@ -138,30 +160,41 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:weightSum="4">
+
             <Button
                 android:id="@+id/btn0"
+                style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="0"/>
+                android:text="@string/d0" />
+
             <Button
                 android:id="@+id/btnClear"
+                style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="C"/>
+                android:text="@string/op_clear"
+                android:contentDescription="@string/cd_clear" />
+
             <Button
                 android:id="@+id/btnEq"
+                style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="="/>
+                android:text="@string/op_eq"
+                android:contentDescription="@string/cd_equals" />
+
             <Button
                 android:id="@+id/btnPlus"
+                style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="+"/>
+                android:text="@string/op_plus"
+                android:contentDescription="@string/cd_plus" />
         </LinearLayout>
 
     </LinearLayout>
