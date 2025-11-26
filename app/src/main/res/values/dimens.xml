@@ -5,4 +5,10 @@
     <dimen name="display_padding">16dp</dimen>
     <dimen name="keys_top_padding">12dp</dimen>
     <dimen name="display_text_size">28sp</dimen>
+
+    <!-- Новые ресурсы под "0dp" и отступы/размеры кнопок -->
+    <dimen name="size_zero">0dp</dimen>
+    <dimen name="button_margin">6dp</dimen>
+    <dimen name="button_text_size">20sp</dimen>
+    <dimen name="button_eq_text_size">22sp</dimen>
 </resources>

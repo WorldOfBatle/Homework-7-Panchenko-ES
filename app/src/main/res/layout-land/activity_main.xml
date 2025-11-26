@@ -7,8 +7,8 @@
 
     <TextView
         android:id="@+id/displayText"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="@dimen/size_zero"
+        android:layout_height="@dimen/size_zero"
         android:minHeight="@dimen/display_height"
         android:background="@color/display_bg"
         android:textColor="@color/display_text"
@@ -20,13 +20,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/pad"
-        app:layout_constraintHorizontal_weight="1"/>
+        app:layout_constraintHorizontal_weight="1" />
 
-    <!-- Правый блок с кнопками: две вертикальные колонки -->
     <LinearLayout
         android:id="@+id/pad"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="@dimen/size_zero"
+        android:layout_height="@dimen/size_zero"
         android:orientation="horizontal"
         android:weightSum="2"
         app:layout_constraintTop_toTopOf="parent"

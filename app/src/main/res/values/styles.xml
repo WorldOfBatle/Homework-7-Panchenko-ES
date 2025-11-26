@@ -2,12 +2,12 @@
 <resources>
     <!-- Базовый стиль кнопки калькулятора -->
     <style name="CalcButton" parent="Widget.Material3.Button.OutlinedButton">
-        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_width">@dimen/size_zero</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">@dimen/button_text_size</item>
         <item name="android:textAllCaps">false</item>
-        <item name="android:layout_margin">6dp</item>
+        <item name="android:layout_margin">@dimen/button_margin</item>
     </style>
 
     <style name="CalcButtonOp" parent="CalcButton">
@@ -15,6 +15,6 @@
     </style>
 
     <style name="CalcButtonEq" parent="CalcButtonOp">
-        <item name="android:textSize">22sp</item>
+        <item name="android:textSize">@dimen/button_eq_text_size</item>
     </style>
 </resources>
