@@ -31,4 +31,24 @@
     <string name="cd_divide">Разделить</string>
     <string name="cd_equals">Равно</string>
     <string name="cd_clear">Очистить</string>
+
+    <!-- Текст для тулбара / меню -->
+    <string name="title_calculator">Калькулятор</string>
+    <string name="menu_about">О приложении</string>
+
+    <!-- Строки для DrawerToggle -->
+    <string name="nav_open">Открыть меню</string>
+    <string name="nav_close">Закрыть меню</string>
+
+    <!-- Экран "О приложении" -->
+    <string name="about_title">О приложении</string>
+    <string name="about_text">
+        Это учебный калькулятор.\nАвтор: Панченко Е.С.\nГруппа: ИС-41
+    </string>
+
+    <!-- Текст в header навигации -->
+    <string name="nav_header_title">Homework 7</string>
+    <string name="nav_header_subtitle">Учебный калькулятор</string>
+
+    <string name="about_author">Автор: Панченко Е.С.</string>
 </resources>

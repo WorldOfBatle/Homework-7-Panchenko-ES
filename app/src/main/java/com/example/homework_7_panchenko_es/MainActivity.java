@@ -1,11 +1,15 @@
 package com.example.homework_7_panchenko_es;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
 
 import com.example.homework_7_panchenko_es.databinding.ActivityMainBinding;
 
@@ -24,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String OP_DIV = "DIV";
 
     private ActivityMainBinding binding;
+    private ActionBarDrawerToggle drawerToggle;
 
     // Внутреннее состояние калькулятора
     private long accumulator = 0L;
@@ -36,7 +41,31 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Восстановление состояния
+        // ---------- Toolbar + Drawer ----------
+        setSupportActionBar(binding.toolbar);
+
+        drawerToggle = new ActionBarDrawerToggle(
+                this,
+                binding.drawerLayout,
+                binding.toolbar,
+                R.string.nav_open,
+                R.string.nav_close
+        );
+        binding.drawerLayout.addDrawerListener(drawerToggle);
+        drawerToggle.syncState();
+
+        binding.navView.setNavigationItemSelectedListener(item -> {
+            int id = item.getItemId();
+            if (id == R.id.nav_about) {
+                Intent intent = new Intent(MainActivity.this, AboutActivity.class);
+                startActivity(intent);
+                binding.drawerLayout.closeDrawers();
+                return true;
+            }
+            return false;
+        });
+
+        // ---------- Восстановление состояния ----------
         if (savedInstanceState != null) {
             String restored = savedInstanceState.getString(
                     KEY_DISPLAY,
@@ -49,13 +78,12 @@ public class MainActivity extends AppCompatActivity {
             clearOnNextDigit = savedInstanceState.getBoolean(KEY_CLEAR_NEXT, false);
         }
 
-        // Один обработчик для всех цифр
+        // ---------- Цифры ----------
         View.OnClickListener digitListener = v -> {
             Button b = (Button) v;
             String digit = b.getText().toString();
             String current = binding.displayText.getText().toString();
 
-            // Если только что было "=" или операция — начинаем новое число
             if (clearOnNextDigit || getString(R.string.disp_zero).contentEquals(current)) {
                 binding.displayText.setText(digit);
                 clearOnNextDigit = false;
@@ -64,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        // Навешиваем на все цифровые кнопки
         binding.btn0.setOnClickListener(digitListener);
         binding.btn1.setOnClickListener(digitListener);
         binding.btn2.setOnClickListener(digitListener);
@@ -76,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
         binding.btn8.setOnClickListener(digitListener);
         binding.btn9.setOnClickListener(digitListener);
 
-        // Обработчики операций
+        // ---------- Операции ----------
         View.OnClickListener opListener = v -> {
             String opCode = null;
             int id = v.getId();
@@ -100,18 +127,36 @@ public class MainActivity extends AppCompatActivity {
         binding.btnMul.setOnClickListener(opListener);
         binding.btnDiv.setOnClickListener(opListener);
 
-        // Кнопка "="
+        // "="
         binding.btnEq.setOnClickListener(v -> handleEquals());
 
-        // Очистка — полностью сбрасываем состояние
+        // "C" — полный сброс
         binding.btnClear.setOnClickListener(v -> resetCalculator());
+    }
+
+    // Нужно для корректной работы ActionBarDrawerToggle
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (drawerToggle != null && drawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    // Закрываем боковое меню по Back
+    @Override
+    public void onBackPressed() {
+        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            binding.drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 
     // Обработка выбора операции (+, −, ×, ÷)
     private void handleOperation(String opCode) {
         String currentText = binding.displayText.getText().toString();
 
-        // Если был показан какой-нибудь "Err" — начнём заново
         long currentValue;
         try {
             currentValue = Long.parseLong(currentText);
@@ -120,24 +165,19 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (pendingOp == null) {
-            // Первая операция — просто запоминаем число в аккумулятор
             accumulator = currentValue;
         } else if (!clearOnNextDigit) {
-            // Вторая и последующие операции — сначала выполняем предыдущую
             accumulator = applyOperation(accumulator, currentValue, pendingOp);
             binding.displayText.setText(String.valueOf(accumulator));
         }
 
-        // Обновляем отложенную операцию
         pendingOp = opCode;
-        // Следующая цифра начнёт новое число
         clearOnNextDigit = true;
     }
 
-    // Обработка нажатия "="
+    // Обработка "="
     private void handleEquals() {
         if (pendingOp == null) {
-            // Нечего считать, просто выходим
             return;
         }
 
@@ -152,12 +192,11 @@ public class MainActivity extends AppCompatActivity {
         accumulator = applyOperation(accumulator, currentValue, pendingOp);
         binding.displayText.setText(String.valueOf(accumulator));
 
-        // После "=" продолжаем считать дальше от результата
         pendingOp = null;
         clearOnNextDigit = true;
     }
 
-    // Непосредственно выполнение арифметики
+    // Арифметика
     private long applyOperation(long left, long right, String opCode) {
         switch (opCode) {
             case OP_PLUS:
@@ -168,8 +207,7 @@ public class MainActivity extends AppCompatActivity {
                 return left * right;
             case OP_DIV:
                 if (right == 0L) {
-                    // Деление на ноль — просто сбрасываем и показываем 0
-                    return 0L;
+                    return 0L; // деление на ноль — просто 0
                 }
                 return left / right;
             default:
@@ -187,7 +225,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
-        // Сохраняем всё, чтобы после поворота логика не ломалась
         outState.putString(KEY_DISPLAY, binding.displayText.getText().toString());
         outState.putLong(KEY_ACCUMULATOR, accumulator);
         outState.putString(KEY_PENDING_OP, pendingOp);

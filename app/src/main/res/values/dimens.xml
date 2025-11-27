@@ -6,9 +6,15 @@
     <dimen name="keys_top_padding">12dp</dimen>
     <dimen name="display_text_size">28sp</dimen>
 
-    <!-- Новые ресурсы под "0dp" и отступы/размеры кнопок -->
+    <!-- то, что мы уже использовали -->
     <dimen name="size_zero">0dp</dimen>
-    <dimen name="button_margin">6dp</dimen>
     <dimen name="button_text_size">20sp</dimen>
     <dimen name="button_eq_text_size">22sp</dimen>
+    <dimen name="button_margin">6dp</dimen>
+
+    <!-- для тулбара и хедера навигации -->
+    <dimen name="toolbar_height">56dp</dimen>
+    <dimen name="toolbar_title_size">20sp</dimen>
+    <dimen name="nav_header_height">160dp</dimen>
+    <dimen name="nav_header_padding">16dp</dimen>
 </resources>
