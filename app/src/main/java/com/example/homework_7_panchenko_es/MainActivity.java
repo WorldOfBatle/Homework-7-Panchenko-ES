@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import androidx.appcompat.app.AlertDialog;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -12,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 
 import com.example.homework_7_panchenko_es.databinding.ActivityMainBinding;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -130,8 +132,8 @@ public class MainActivity extends AppCompatActivity {
         // "="
         binding.btnEq.setOnClickListener(v -> handleEquals());
 
-        // "C" — полный сброс
-        binding.btnClear.setOnClickListener(v -> resetCalculator());
+        // "C" — теперь спрашиваем подтверждение перед полным сбросом
+        binding.btnClear.setOnClickListener(v -> showClearConfirmDialog());
     }
 
     // Нужно для корректной работы ActionBarDrawerToggle
@@ -151,6 +153,21 @@ public class MainActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    private void showClearConfirmDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.clear_dialog_title)
+                .setMessage(R.string.clear_dialog_message)
+                .setPositiveButton(R.string.clear_dialog_yes, (dialog, which) -> {
+                    // Если пользователь подтвердил — сбрасываем калькулятор
+                    resetCalculator();
+                })
+                .setNegativeButton(R.string.clear_dialog_no, (dialog, which) -> {
+                    // Отмена — просто закрываем диалог
+                    dialog.dismiss();
+                })
+                .show();
     }
 
     // Обработка выбора операции (+, −, ×, ÷)

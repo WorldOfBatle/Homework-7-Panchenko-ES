@@ -51,4 +51,10 @@
     <string name="nav_header_subtitle">Учебный калькулятор</string>
 
     <string name="about_author">Автор: Панченко Е.С.</string>
+
+    <!-- Диалог подтверждения сброса -->
+    <string name="clear_dialog_title">Сброс</string>
+    <string name="clear_dialog_message">Сбросить текущее выражение и начать сначала?</string>
+    <string name="clear_dialog_yes">Да</string>
+    <string name="clear_dialog_no">Отмена</string>
 </resources>
